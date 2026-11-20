@@ -139,3 +139,105 @@ header p {
 .hidden {
     display: none;
 }
+.activity-card {
+    border: none;
+    border-radius: 20px;
+
+    min-height: 260px;
+
+    padding: 1.5rem;
+
+    cursor: pointer;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    transition: all .25s ease;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.3);
+}
+
+/* Färger beroende på typ */
+
+.activity-card.game {
+    background:
+        linear-gradient(
+            135deg,
+            #1e8449,
+            #27ae60
+        );
+}
+
+.activity-card.video {
+    background:
+        linear-gradient(
+            135deg,
+            #b03a2e,
+            #e74c3c
+        );
+}
+
+.activity-card.reading {
+    background:
+        linear-gradient(
+            135deg,
+            #2471a3,
+            #3498db
+        );
+}
+
+/* Hover */
+
+.activity-card:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.03);
+
+    box-shadow:
+        0 14px 30px rgba(0,0,0,.35);
+}
+
+/* Klickeffekt */
+
+.activity-card:active {
+
+    transform:
+        scale(0.96);
+}
+
+/* Ikon */
+
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+/* Titel */
+
+.activity-card h3 {
+
+    font-size: 1.4rem;
+
+    margin-bottom: 1rem;
+}
+
+/* Tag */
+
+.card-tag {
+
+    background: rgba(255,255,255,.25);
+
+    padding: .5rem 1rem;
+
+    border-radius: 999px;
+
+    font-size: .9rem;
+}
