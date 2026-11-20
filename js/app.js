@@ -38,7 +38,7 @@ const grid = document.getElementById("activity-grid");
 
 activities.forEach(activity => {
 
-    const card = document.createElement("div");
+    const card = document.createElement("button");
 
     card.classList.add(
         "activity-card",
@@ -46,8 +46,11 @@ activities.forEach(activity => {
     );
 
     card.innerHTML = `
-        <div class="icon">${activity.icon}</div>
+        <div class="card-icon">${activity.icon}</div>
         <h3>${activity.title}</h3>
+        <span class="card-tag">
+            ${activity.type}
+        </span>
     `;
 
     grid.appendChild(card);
