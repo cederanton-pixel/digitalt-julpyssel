@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    background-color: #0f2740;
+    color: white;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+}
+
+.activity-grid {
+    padding: 2rem;
+}
+
+/* Kommer byggas ut i steg 2 */
