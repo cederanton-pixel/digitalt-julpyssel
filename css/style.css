@@ -4,21 +4,138 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-dark: #0b2742;
+    --card-red: #c0392b;
+    --card-green: #1e8449;
+    --card-blue: #2471a3;
+    --text-light: #ffffff;
+    --shadow: rgba(0,0,0,0.25);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background:
+        linear-gradient(
+            180deg,
+            #102c4c 0%,
+            #0b2742 100%
+        );
 
-    background-color: #0f2740;
     color: white;
+
+    min-height: 100vh;
 }
 
-.hero {
+header {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
-.activity-grid {
-    padding: 2rem;
+header h1 {
+    font-size: 3rem;
 }
 
-/* Kommer byggas ut i steg 2 */
+header p {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+}
+
+/* GRID */
+
+#activity-grid {
+    width: min(1400px, 95%);
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: 1.5rem;
+
+    padding-bottom: 3rem;
+}
+
+/* KORT */
+
+.activity-card {
+    background: white;
+
+    color: #222;
+
+    border-radius: 18px;
+
+    padding: 1.5rem;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    box-shadow:
+        0 6px 14px var(--shadow);
+
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.activity-card:hover {
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+    box-shadow:
+        0 12px 24px rgba(0,0,0,.35);
+}
+
+.activity-card .icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.activity-card h3 {
+    font-size: 1.3rem;
+}
+
+/* KATEGORIFÄRGER */
+
+.activity-card.game {
+    border-top: 10px solid var(--card-green);
+}
+
+.activity-card.video {
+    border-top: 10px solid var(--card-red);
+}
+
+.activity-card.reading {
+    border-top: 10px solid var(--card-blue);
+}
+
+/* RESPONSIVT */
+
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .activity-card {
+        min-height: 180px;
+    }
+}
+
+/* MODAL FÖRBEREDNING */
+
+.hidden {
+    display: none;
+}
