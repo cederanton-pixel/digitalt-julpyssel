@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalt Julpyssel</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Snöeffekt -->
+    <div id="snow-container"></div>
+
+    <header class="hero">
+        <h1>🎄 Digitalt Julpyssel 🎄</h1>
+        <p>Välj en aktivitet och ha kul!</p>
+    </header>
+
+    <main>
+        <section id="activity-grid" class="activity-grid">
+            <!-- Skapas automatiskt med JavaScript -->
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button id="closeModal" class="close-btn">
+                ✖ Stäng
+            </button>
+
+            <div id="modal-body">
+                <!-- Innehåll laddas här -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
