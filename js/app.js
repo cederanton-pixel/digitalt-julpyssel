@@ -34,3 +34,22 @@ const activities = [
         `
     }
 ];
+const grid = document.getElementById("activity-grid");
+
+activities.forEach(activity => {
+
+    const card = document.createElement("div");
+
+    card.classList.add(
+        "activity-card",
+        activity.type
+    );
+
+    card.innerHTML = `
+        <div class="icon">${activity.icon}</div>
+        <h3>${activity.title}</h3>
+    `;
+
+    grid.appendChild(card);
+
+});
