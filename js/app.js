@@ -32,7 +32,17 @@ const activities = [
             <h2>Julgåta</h2>
             <p>Jag har skägg men är ingen tomte. Vem är jag?</p>
         `
-    }
+    },
+    
+    {
+    id: 10,
+    title: "Tomtens Julsäck",
+    type: "game",
+    category: "Julspel",
+    icon: "🎅",
+    content: "games/julsacken.html",
+    description: "Fånga julklappar och polkagrisar men undvik kolbitar!"
+}
 ];
 const grid = document.getElementById("activity-grid");
 
