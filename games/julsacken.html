@@ -192,6 +192,201 @@ button:hover{
 </div>
 
 <script>
+<script>
 const game = document.getElementById("game");
 const player = document.getElementById("player");
-const score
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+
+const startScreen = document.getElementById("startScreen");
+const endScreen = document.getElementById("endScreen");
+const finalScore = document.getElementById("finalScore");
+
+let score = 0;
+let timeLeft = 30;
+let gameRunning = false;
+
+let playerX = 300;
+
+const items = [];
+
+function updatePlayer() {
+    player.style.left = playerX + "px";
+}
+
+function spawnItem() {
+
+    const types = [
+        { emoji: "🎁", points: 10 },
+        { emoji: "🍭", points: 5 },
+        { emoji: "🪨", points: -10 }
+    ];
+
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = type.emoji;
+
+    const x = Math.random() * (game.clientWidth - 50);
+
+    item.style.left = x + "px";
+    item.style.top = "-50px";
+
+    game.appendChild(item);
+
+    items.push({
+        element: item,
+        x: x,
+        y: -50,
+        points: type.points
+    });
+}
+
+function gameLoop() {
+
+    if (!gameRunning) return;
+
+    for (let i = items.length - 1; i >= 0; i--) {
+
+        const item = items[i];
+
+        item.y += 4;
+
+        item.element.style.top = item.y + "px";
+
+        const playerRect = player.getBoundingClientRect();
+        const itemRect = item.element.getBoundingClientRect();
+
+        const hit =
+            playerRect.left < itemRect.right &&
+            playerRect.right > itemRect.left &&
+            playerRect.top < itemRect.bottom &&
+            playerRect.bottom > itemRect.top;
+
+        if (hit) {
+
+            score += item.points;
+            scoreEl.textContent = score;
+
+            item.element.remove();
+            items.splice(i, 1);
+
+            continue;
+        }
+
+        if (item.y > game.clientHeight) {
+
+            item.element.remove();
+            items.splice(i, 1);
+        }
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+function startGame() {
+
+    score = 0;
+    timeLeft = 30;
+
+    scoreEl.textContent = score;
+    timeEl.textContent = timeLeft;
+
+    startScreen.style.display = "none";
+    endScreen.style.display = "none";
+
+    gameRunning = true;
+
+    const spawnInterval = setInterval(() => {
+
+        if (gameRunning) {
+            spawnItem();
+        }
+
+    }, 500);
+
+    const timer = setInterval(() => {
+
+        timeLeft--;
+
+        timeEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+
+            gameRunning = false;
+
+            clearInterval(timer);
+            clearInterval(spawnInterval);
+
+            finalScore.textContent = score;
+
+            endScreen.style.display = "flex";
+        }
+
+    }, 1000);
+
+    gameLoop();
+}
+
+document.getElementById("startBtn")
+    .addEventListener("click", startGame);
+
+document.getElementById("restartBtn")
+    .addEventListener("click", startGame);
+
+window.addEventListener("keydown", (e) => {
+
+    if (!gameRunning) return;
+
+    if (e.key === "ArrowLeft") {
+        playerX -= 25;
+    }
+
+    if (e.key === "ArrowRight") {
+        playerX += 25;
+    }
+
+    playerX = Math.max(
+        0,
+        Math.min(game.clientWidth - 80, playerX)
+    );
+
+    updatePlayer();
+});
+
+game.addEventListener("mousemove", (e) => {
+
+    if (!gameRunning) return;
+
+    const rect = game.getBoundingClientRect();
+
+    playerX = e.clientX - rect.left - 40;
+
+    playerX = Math.max(
+        0,
+        Math.min(game.clientWidth - 80, playerX)
+    );
+
+    updatePlayer();
+});
+
+game.addEventListener("touchmove", (e) => {
+
+    if (!gameRunning) return;
+
+    const touch = e.touches[0];
+    const rect = game.getBoundingClientRect();
+
+    playerX = touch.clientX - rect.left - 40;
+
+    playerX = Math.max(
+        0,
+        Math.min(game.clientWidth - 80, playerX)
+    );
+
+    updatePlayer();
+});
+
+updatePlayer();
+</script>
